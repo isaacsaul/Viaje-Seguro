@@ -1,172 +1,190 @@
-<div>
+<div class="bg-[#eff2f2] min-h-screen py-2">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="px-6 py-4 flex items-center">
-            <input type="text" class="flex-1" style="margin-right: 1rem; border-radius: 5px;" placeholder="Escribe para buscar" wire:model="search">
-            <!-- Aquí se incluiría el componente para crear una nueva movilidad -->
-            @livewire('create-movilidad')
-        </div>
-
-
-
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto">
-            <!-- Contenedor para la tabla con desplazamiento horizontal -->
-            <div class="py-4 align-middle inline-block min-w-full">
-                <div class="overflow-hidden border-b border-gray-200 sm:rounded-lg">
-
-
-                    @if ($movilidades->count())
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th scope="col" class="w-40 cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="order('id')">
-                                        ID
-                                        <i class="fas fa-sort"></i>
-                                    </th>
-                                    <th scope="col" class="cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="order('placa')">
-                                        Placa
-                                        <i class="fas fa-sort"></i>
-                                    </th>
-                                    <th scope="col" class="cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="order('color')">
-                                        Color
-                                        <i class="fas fa-sort"></i>
-                                    </th>
-                                    <th scope="col" class="cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="order('marca')">
-                                        Marca
-                                        <i class="fas fa-sort"></i>
-                                    </th>
-                                    <th scope="col" class="cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="order('modelo')">
-                                        Modelo
-                                        <i class="fas fa-sort"></i>
-                                    </th>
-                                    <th scope="col" class="cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="order('capacidad')">
-                                        Capacidad
-                                        <i class="fas fa-sort"></i>
-                                    </th>
-                                    <th scope="col" class="bg-gray-200  cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="order('linea_id')">
-                                        LINEA ID
-                                        <i class="fas fa-sort"></i>
-                                    </th>
-                                    <th scope="col" class="w-30 bg-gray-200  cursor-pointer px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="order('codgrupo')">
-                                        Código de la linea
-                                        <i class="fas fa-sort"></i>
-                                    </th>
-                                    <th scope="col" class=" bg-gray-200 cursor-pointer px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="order('codgrupo')">
-                                        Tipo de vehiculo de la linea
-                                        <i class="fas fa-sort"></i>
-                                    </th>
-                                    <th scope="col" class="cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="order('grupo_id')">
-                                        Grupo ID
-                                        <i class="fas fa-sort"></i>
-                                    </th>
-                                    <th scope="col" class="cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="order('grupo_id')">
-                                        Codigo de Grupo
-                                        <i class="fas fa-sort"></i>
-                                    </th>
-                                    <th scope="col" class=" w-30 cursor-pointer px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider" wire:click="order('grupo_id')">
-                                        Descripcion de Grupo
-                                        <i class="fas fa-sort"></i>
-                                    </th>
-
-
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Acciones
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                @foreach ($movilidades as $movilidad)
-                                    <tr>
-                                        <td class="px-6 py-4">
-                                            <div class="text-sm text-gray-900 w-30 ">
-                                                {{$movilidad->id}}
-                                            </div>
-                                        </td>
-                                        <td class="px-4 py-4">
-                                            <div class="text-sm text-gray-900 w-20">
-                                                {{$movilidad->placa}}
-                                            </div>
-                                        </td>
-                                        <td class="px-4 py-4">
-                                            <div class="text-sm text-gray-900 w-20">
-                                                {{$movilidad->color}}
-                                            </div>
-                                        </td>
-                                        <td class="px-8 py-4">
-                                            <div class="text-sm text-gray-900 w-20">
-                                                {{$movilidad->marca}}
-                                            </div>
-                                        </td>
-                                        <td class="px-8 py-4">
-                                            <div class="text-sm text-gray-900 w-30">
-                                                {{$movilidad->modelo}}
-                                            </div>
-                                        </td>
-                                        <td class="px-8 py-4">
-                                            <div class="text-sm text-gray-900 w-20">
-                                                {{$movilidad->capacidad}}
-                                            </div>
-                                        </td>
-                                        <td class="px-8 py-4 bg-gray-100">
-                                            <div class="text-sm text-gray-900 w-10">
-                                                {{ $movilidad->linea->id }}
-                                            </div>
-                                        </td>
-                                        <td class="px-8 py-4  bg-gray-100">
-                                            <div class="text-sm text-gray-900 w-30">
-                                                {{ $movilidad->linea->codigo }}
-                                            </div>
-                                        </td>
-
-                                        <td class="px-8 py-4  bg-gray-100 ">
-                                            <div class="text-sm text-gray-900 w-40  pl-14">
-                                                {{ $movilidad->linea->tipovehiculo }}
-                                            </div>
-                                        </td>
-
-                                        <td class="px-6 py-4">
-                                            <div class="text-sm text-gray-900 w-20">
-                                                    {{ $movilidad->linea->grupo_id }}
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="text-sm text-gray-900 w-40  pl-14">
-                                                    {{ $movilidad->linea->grupo->codgrupo }}
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <div class="text-sm text-gray-900 w-40">
-                                                    {{ $movilidad->linea->grupo->descripcion }}
-                                            </div>
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium grid grid-cols-2 cursor-pointer">
-                                            <!-- Aquí se incluiría el componente para editar la movilidad -->
-                                            <!-- Y el botón para eliminar la movilidad -->
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium grid grid-cols-2 cursor-pointer">
-                                            <!-- Componente para editar la movilidad -->
-                                            @livewire('edit-movilidad', ['movilidad' => $movilidad], key($movilidad->id))
-                                            <!-- Botón para eliminar la movilidad -->
-                                            <div>
-                                                <a class="btn btn-red text-white" style="background-color: red; padding:10px; border-radius: 3px;" wire:click="$emit('deleteMovilidad', {{ $movilidad->id }})">
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    @else
-                        <div class="px-6 py-4">
-                            No existen movilidades registradas
-                        </div>
-                    @endif
-
-
+        <!-- Barra de búsqueda y botones -->
+        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+                <div class="relative flex-1 w-full">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <svg class="h-5 w-5 text-[#777779]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                    <input type="text"
+                        class="w-full pl-10 pr-4 py-3 border border-[#a4b0af] rounded-lg focus:ring-[#28b0a3] focus:border-[#28b0a3] text-[#5d5c64] placeholder-[#8c9494]"
+                        placeholder="Escribe para buscar"
+                        wire:model="search">
                 </div>
-           </div>
+
+                <button class="px-6 py-3 bg-[#28b0a3] hover:bg-[#6acbc3] text-white rounded-lg transition-all duration-300 flex items-center justify-center gap-2 font-medium shadow-md hover:shadow-lg transform hover:scale-[1.02]"
+                    wire:click="toggleDeleted">
+                    <i class="fas fa-sync-alt"></i>
+                    {{ $showDeleted ? 'Mostrar Activos' : 'Mostrar Eliminados' }}
+                </button>
+
+                <div class="w-full sm:w-auto">
+                    @livewire('create-movilidad')
+                </div>
+            </div>
         </div>
+
+        @if ($movilidades->count())
+            <div class="bg-white rounded-xl shadow-md overflow-hidden max-w-[95%] mx-auto">
+                <div class="overflow-x-auto">
+                    <table class="w-full divide-y divide-[#a4b0af]/20">
+                        <thead class="bg-[#eff2f2]">
+                            <tr>
+                                <th scope="col" class="group px-4 py-3 text-left whitespace-nowrap">
+                                    <div class="flex items-center gap-1 cursor-pointer" wire:click="order('placa')">
+                                        <span class="text-xs font-medium text-[#5d5c64] uppercase tracking-wider hover:text-[#28b0a3] transition-colors duration-300">Placa</span>
+                                        <i class="fas fa-sort text-[#777779] group-hover:text-[#28b0a3]"></i>
+                                    </div>
+                                </th>
+                                <th scope="col" class="group px-4 py-3 text-left whitespace-nowrap">
+                                    <div class="flex items-center gap-1 cursor-pointer" wire:click="order('color')">
+                                        <span class="text-xs font-medium text-[#5d5c64] uppercase tracking-wider hover:text-[#28b0a3] transition-colors duration-300">Color</span>
+                                        <i class="fas fa-sort text-[#777779] group-hover:text-[#28b0a3]"></i>
+                                    </div>
+                                </th>
+                                <th scope="col" class="group px-4 py-3 text-left whitespace-nowrap">
+                                    <div class="flex items-center gap-1 cursor-pointer" wire:click="order('marca')">
+                                        <span class="text-xs font-medium text-[#5d5c64] uppercase tracking-wider hover:text-[#28b0a3] transition-colors duration-300">Marca</span>
+                                        <i class="fas fa-sort text-[#777779] group-hover:text-[#28b0a3]"></i>
+                                    </div>
+                                </th>
+                                <th scope="col" class="group px-4 py-3 text-left whitespace-nowrap">
+                                    <div class="flex items-center gap-1 cursor-pointer" wire:click="order('modelo')">
+                                        <span class="text-xs font-medium text-[#5d5c64] uppercase tracking-wider hover:text-[#28b0a3] transition-colors duration-300">Modelo</span>
+                                        <i class="fas fa-sort text-[#777779] group-hover:text-[#28b0a3]"></i>
+                                    </div>
+                                </th>
+                                <th scope="col" class="group px-4 py-3 text-left whitespace-nowrap">
+                                    <div class="flex items-center gap-1 cursor-pointer" wire:click="order('capacidad')">
+                                        <span class="text-xs font-medium text-[#5d5c64] uppercase tracking-wider hover:text-[#28b0a3] transition-colors duration-300">Cap.</span>
+                                        <i class="fas fa-sort text-[#777779] group-hover:text-[#28b0a3]"></i>
+                                    </div>
+                                </th>
+                                <th scope="col" class="group px-4 py-3 text-left whitespace-nowrap">
+                                    <div class="flex items-center gap-1 cursor-pointer" wire:click="order('no_soat')">
+                                        <span class="text-xs font-medium text-[#5d5c64] uppercase tracking-wider hover:text-[#28b0a3] transition-colors duration-300">SOAT</span>
+                                        <i class="fas fa-sort text-[#777779] group-hover:text-[#28b0a3]"></i>
+                                    </div>
+                                </th>
+                                <th scope="col" class="group px-4 py-3 text-left whitespace-nowrap bg-[#eff2f2]/70">
+                                    <div class="flex items-center gap-1 cursor-pointer" wire:click="order('codgrupo')">
+                                        <span class="text-xs font-medium text-[#5d5c64] uppercase tracking-wider hover:text-[#28b0a3] transition-colors duration-300">Cód.Línea</span>
+                                        <i class="fas fa-sort text-[#777779] group-hover:text-[#28b0a3]"></i>
+                                    </div>
+                                </th>
+                                <th scope="col" class="group px-4 py-3 text-left whitespace-nowrap bg-[#eff2f2]/70">
+                                    <div class="flex items-center gap-1">
+                                        <span class="text-xs font-medium text-[#5d5c64] uppercase tracking-wider">T.Vehículo</span>
+                                    </div>
+                                </th>
+                                <th scope="col" class="group px-4 py-3 text-left whitespace-nowrap">
+                                    <div class="flex items-center gap-1">
+                                        <span class="text-xs font-medium text-[#5d5c64] uppercase tracking-wider">C.Grupo</span>
+                                    </div>
+                                </th>
+                                <th scope="col" class="group px-4 py-3 text-left whitespace-nowrap">
+                                    <div class="flex items-center gap-1">
+                                        <span class="text-xs font-medium text-[#5d5c64] uppercase tracking-wider">D.Grupo</span>
+                                    </div>
+                                </th>
+                                <th scope="col" class="px-4 py-3 text-right whitespace-nowrap">
+                                    <span class="text-xs font-medium text-[#5d5c64] uppercase tracking-wider">Acc.</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-[#a4b0af]/20">
+                            @foreach ($movilidades as $movilidad)
+                                <tr class="hover:bg-[#eff2f2]/50 transition-colors duration-200">
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm text-[#1e1e1f] font-medium">{{$movilidad->placa}}</div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm text-[#5d5c64]">{{$movilidad->color}}</div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm text-[#5d5c64]">{{$movilidad->marca}}</div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm text-[#5d5c64]">{{$movilidad->modelo}}</div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm text-[#5d5c64]">{{$movilidad->capacidad}}</div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm text-[#5d5c64]">{{$movilidad->no_soat}}</div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap bg-[#eff2f2]/30">
+                                        <div class="text-sm text-[#5d5c64]">{{ $movilidad->linea->codigo }}</div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap bg-[#eff2f2]/30">
+                                        <div class="text-sm text-[#5d5c64]">{{ $movilidad->linea->tipovehiculo }}</div>
+                                    </td>
+                                    <td class="px-4 py-3 whitespace-nowrap">
+                                        <div class="text-sm text-[#5d5c64]">{{ $movilidad->linea->grupo->codgrupo }}</div>
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <div class="text-sm text-[#5d5c64] line-clamp-2 max-w-[150px]">{{ $movilidad->linea->grupo->descripcion }}</div>
+                                    </td>
+                                    <td class="px-4 py-3 text-right whitespace-nowrap">
+                                        <div class="flex items-center justify-end gap-2">
+                                            <div>
+                                                @livewire('edit-movilidad', ['movilidad' => $movilidad], key($movilidad->id))
+                                            </div>
+                                            <div>
+                                                @if ($showDeleted)
+                                                    <button class="p-1.5 bg-[#28b0a3] text-white rounded-lg hover:bg-[#6acbc3] transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-[1.02]"
+                                                        wire:click="restore({{ $movilidad->id }})">
+                                                        <i class="fas fa-undo"></i>
+                                                    </button>
+                                                @else
+                                                    <button class="p-1.5 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all duration-300 shadow-sm hover:shadow-md transform hover:scale-[1.02]"
+                                                        wire:click="$emit('deleteMovilidad', {{ $movilidad->id }})">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        @else
+            <div class="bg-white rounded-xl shadow-md p-8 text-center">
+                <div class="flex flex-col items-center justify-center gap-3">
+                    <svg class="w-12 h-12 text-[#777779]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                    </svg>
+                    <p class="text-lg font-medium text-[#5d5c64]">No existen movilidades registradas</p>
+                </div>
+            </div>
+        @endif
     </div>
 </div>
+
+<style>
+    /* Estilos para efectos hover suaves */
+    .transition-all {
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+    }
+
+    .hover\:scale-\[1\.02\]:hover {
+        transform: scale(1.02);
+    }
+
+    /* Estilos para sombras */
+    .shadow-md {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    .hover\:shadow-lg:hover {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+</style>

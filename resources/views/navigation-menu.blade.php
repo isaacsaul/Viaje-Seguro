@@ -18,17 +18,47 @@
 
 
                     <x-nav-link href="{{ route('reportesview') }}" :active="request()->routeIs('reportesview')">
-                        {{ __('reportesview') }}
+                        {{ __('Rutas') }}
                     </x-nav-link>
 
 
-                    <x-nav-link href="{{ route('tablero') }}" :active="request()->routeIs('tablero')">
-                        {{ __('tablero') }}
-                    </x-nav-link>
+                    @can('admin') <!-- Verifica si el usuario tiene el rol de admin -->
+                        <x-nav-link href="{{ route('tablero') }}" :active="request()->routeIs('tablero')">
+                            {{ __('Denuncias') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can('dpto') <!-- Verifica si el usuario tiene el rol de dpto -->
+                        <x-nav-link href="{{ route('tablero') }}" :active="request()->routeIs('tablero')">
+                            {{ __('Denuncias') }}
+                        </x-nav-link>
+                    @endcan
+
 
                     <x-nav-link href="{{ route('analysisdata') }}" :active="request()->routeIs('analysisdata')">
-                        {{ __('analysisdata') }}
+                        {{ __('Analisis de datos') }}
                     </x-nav-link>
+
+                    @can('admin') <!-- Verifica si el usuario tiene el rol de admin -->
+                        <x-nav-link href="{{ route('listado') }}" :active="request()->routeIs('listado')">
+                            {{ __('Lista de Pagos') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can('dpto') <!-- Verifica si el usuario tiene el rol de dpto -->
+                        <x-nav-link href="{{ route('listado') }}" :active="request()->routeIs('listado')">
+                            {{ __('Lista de Pagos') }}
+                        </x-nav-link>
+                    @endcan
+
+                    @can('admin') <!-- Verifica si el usuario tiene el rol de admin -->
+                        <x-nav-link href="{{ route('certificaciones') }}" :active="request()->routeIs('certificaciones')">
+                            {{ __('Certificaciones') }}
+                        </x-nav-link>
+                    @endcan
+
+
+
 
 
 

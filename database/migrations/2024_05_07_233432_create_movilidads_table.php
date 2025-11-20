@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('no_soat')->unique();
             $table->foreignId('linea_id')->constrained('lineas')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

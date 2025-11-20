@@ -25,6 +25,7 @@ return new class extends Migration
              $table->unsignedBigInteger('chofer_id');
              $table->foreign('chofer_id')->references('id')->on('chofers')->onDelete('cascade');
              $table->timestamps();
+             $table->softDeletes();
         });
     }
 

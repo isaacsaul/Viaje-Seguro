@@ -19,27 +19,27 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                    <h2 class="text-2xl font-semibold mb-4">Reporte de Denuncias</h2>
+                    <h2 class="text-2xl font-semibold mb-4">Reporte de Denuncias por mes</h2>
                     @livewire('report-chart')
                 </div>
 
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                    <h2 class="text-2xl font-semibold mb-4">Gráfico de Líneas</h2>
+                    <h2 class="text-2xl font-semibold mb-4">Gráfico de Denuncias por Líneas</h2>
                     @livewire('line-chart')
                 </div>
 
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                    <h2 class="text-2xl font-semibold mb-4">Gráfico de Tarta</h2>
+                    <h2 class="text-2xl font-semibold mb-4">Gráfico de Infracciones</h2>
                     @livewire('pie-chart')
                 </div>
 
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
+                {{-- <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
                     <h2 class="text-2xl font-semibold mb-4">Gráfico de radar</h2>
                     @livewire('radar-chart')
-                </div>
+                </div> --}}
 
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                    <h2 class="text-2xl font-semibold mb-4">Gráfico de radar</h2>
+                    <h2 class="text-2xl font-semibold mb-4">Gráfico de Sanciones</h2>
                     @livewire('doughnut-chart')
                 </div>
 

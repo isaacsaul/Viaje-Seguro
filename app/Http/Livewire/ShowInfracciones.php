@@ -3,23 +3,50 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Infraccion; // Asegúrate de importar el modelo correcto
+use App\Models\Infraccion;
+use Livewire\WithPagination;
 
 class ShowInfracciones extends Component
 {
-    public $search;
+    use WithPagination;
+
+    public $search = '';
     public $sort = "id";
     public $direction = "desc";
+    public $showDeleted = false;
 
-    protected $listeners = ['render', 'delete'];
+    protected $listeners = ['render', 'delete' => 'delete', 'deleteInfraccion' => 'delete', 'restore'];
+
+    // Reiniciar la paginación cuando se actualiza la búsqueda
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
 
     public function render()
     {
-        $infracciones = Infraccion::where('tipoinfraccion', 'like', '%' . $this->search . '%')
-                                   ->orWhere('estado', 'like', '%' . $this->search . '%')
-                                   ->orderBy($this->sort, $this->direction)
-                                   ->get();
-        return view('livewire.show-infracciones', compact('infracciones'));
+        $query = Infraccion::query()
+            ->with(['chofer', 'sancion']); // Eager loading de relaciones
+
+        if ($this->showDeleted) {
+            $query->onlyTrashed();
+        } else {
+            $query->whereNull('deleted_at');
+        }
+
+        // Búsqueda específica por CI del chofer
+        if (trim($this->search) !== '') {
+            $query->whereHas('chofer', function($q) {
+                $q->where('ci', 'like', '%' . trim($this->search) . '%');
+            });
+        }
+
+        $infracciones = $query->orderBy($this->sort, $this->direction)
+                             ->paginate(10);
+
+        return view('livewire.show-infracciones', [
+            'infracciones' => $infracciones
+        ]);
     }
 
     public function order($sort)
@@ -32,8 +59,34 @@ class ShowInfracciones extends Component
         }
     }
 
-    public function delete(Infraccion $infraccion)
+    public function delete($id)
     {
-        $infraccion->delete();
+        $infraccion = Infraccion::find($id);
+        if ($infraccion) {
+            $infraccion->delete();
+            $this->emit('render');
+        }
+    }
+
+    public function restore($id)
+    {
+        $infraccion = Infraccion::onlyTrashed()->find($id);
+        if ($infraccion) {
+            $infraccion->restore();
+            $this->emit('render');
+        }
+    }
+
+    public function toggleDeleted()
+    {
+        $this->showDeleted = !$this->showDeleted;
+        $this->resetPage();
+    }
+
+    // Limpiar la búsqueda
+    public function clearSearch()
+    {
+        $this->search = '';
+        $this->resetPage();
     }
 }

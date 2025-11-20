@@ -1,6 +1,11 @@
 <div>
-    <button class="font-bold py-2 px-4 rounded" style="background-color: rgb(21, 201, 214)" wire:click="$set('open', true)">
-        Crear nuevo chofer
+
+    <button class="py-2 px-4 rounded"
+            style="background-color: rgb(21, 201, 214); color: white; font-weight: 400; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; box-shadow: 2px 2px 5px rgba(0,0,0,0.2); transition: background-color 0.3s ease;"
+            wire:click="$set('open', true)"
+            onmouseover="this.style.backgroundColor='rgb(15, 158, 168)'"
+            onmouseout="this.style.backgroundColor='rgb(21, 201, 214)'">
+            Crear nuevo chofer
     </button>
 
     <x-modal wire:model="open">
@@ -78,7 +83,7 @@
                             <label style="margin-right: 0.5rem;">Celular:</label>
                         </div>
                         <div class="w-full">
-                            <input type="text" class="w-full rounded" wire:model.defer="celular">
+                            <input type="number" class="w-full rounded" wire:model.defer="celular" placeholder="Ej: 71234567" min="60000000" max="79999999">
                             @error('celular')
                                <span style="color: red">{{ $message }}</span>
                             @enderror
@@ -90,12 +95,19 @@
                             <label style="margin-right: 0.5rem;">Estado Civil:</label>
                         </div>
                         <div class="w-full">
-                            <input type="text" class="w-full rounded" wire:model.defer="estado_civil">
+                            <select class="w-full rounded" wire:model.defer="estado_civil">
+                                <option value="">Selecciona un estado civil</option>
+                                <option value="soltero">Soltero/a</option>
+                                <option value="casado">Casado/a</option>
+                                <option value="divorciado">Divorciado/a</option>
+                                <option value="viudo">Viudo/a</option>
+                            </select>
                             @error('estado_civil')
                                <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
+
 
                     <div>
                         <div>
@@ -197,10 +209,13 @@
             <!-- Ranura (slot) para el footer -->
             <div class="bg-gray-200 py-4 px-6 rounded-b text-right">
                 <slot name="footer">
-                    <button style="background-color: blueviolet" class="py-2 px-4 rounded" wire:click="$set('open', false)">Cancelar</button>
-                    <button class="py-2 px-4 rounded" style="background-color: rgb(67, 216, 204)" wire:click="save">Crear</button>
+                    <!-- Botón de cancelar con fondo rojo y texto blanco -->
+                    <button class="py-2 px-4 rounded text-white" style="background-color: red;" wire:click="$set('open', false)">Cancelar</button>
+                    <!-- Botón de crear con fondo verde y texto blanco -->
+                    <button class="py-2 px-4 rounded text-white" style="background-color: green;" wire:click="save">Crear</button>
                 </slot>
             </div>
+
         </div>
     </x-modal>
 </div>

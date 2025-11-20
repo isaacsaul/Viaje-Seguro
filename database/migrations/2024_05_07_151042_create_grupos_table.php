@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('fechafundacion');
             $table->string('encargado');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

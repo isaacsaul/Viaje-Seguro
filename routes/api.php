@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Chofer;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+Route::get('verificar-carnet', function(Request $request) {
+    $result = Chofer::verificarCarnet($request->query('carnet'));
+    return response()->json($result, $result['success'] ? 200 : 400);
+});
+
+Route::post('verificar-carnet', function(Request $request) {
+    $result = Chofer::verificarCarnet($request->input('carnet'));
+    return response()->json($result, $result['success'] ? 200 : 400);
 });

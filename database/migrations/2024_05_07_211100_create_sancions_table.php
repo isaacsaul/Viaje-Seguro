@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('tiposancion');
             $table->string('descripcion');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

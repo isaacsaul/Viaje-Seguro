@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('chofers', function (Blueprint $table) {
             $table->id();
-            $table->string('ci');
+            $table->string('ci')->unique();
             $table->string('correo');
             $table->string('nombres');
             $table->string('apellidos');
@@ -30,6 +30,7 @@ return new class extends Migration
             $table->foreignId('movilidad_id')->constrained('movilidads')->onDelete('cascade');
             $table->foreignId('tiposocio_id')->constrained('tiposocios')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

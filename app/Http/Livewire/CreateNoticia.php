@@ -16,13 +16,14 @@ class CreateNoticia extends Component
 
     protected $rules = [
         'titulo'=>'required',
-        'contenido'=>'required',
-        'imagen'=>'required'
+        'contenido' => 'required|max:255',
+        'imagen'=>'required|nullable|image'
     ];
 
     protected $messages = [
         'titulo.required' => 'El título es obligatorio.',
         'contenido.required' => 'El contenido es obligatorio.',
+        'contenido.max' => 'El contenido no puede tener más de 255 caracteres.',
         'imagen.required' => 'La imagen es obligatoria.',
     ];
 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nombresocio');
             $table->string('descripcionsocio');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

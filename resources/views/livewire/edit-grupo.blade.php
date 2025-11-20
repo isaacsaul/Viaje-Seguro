@@ -1,6 +1,6 @@
 <div>
-    <a wire:click="$set('open', true)">
-        <i style="background-color: green; padding: 0.5rem; border-radius: 3px;" class="fas fa-edit text-white"></i>
+    <a wire:click="$set('open', true)" class="btn btn-green text-white" style="background-color: green; padding:10px; border-radius: 3px;">
+        <i class="fas fa-edit"></i>
     </a>
 
     <x-modal wire:model="open">
@@ -58,9 +58,10 @@
             <!-- Ranura (slot) para el footer -->
             <div class="bg-gray-200 py-4 px-6 rounded-b text-right">
                 <slot name="footer">
-                    <button style="background-color: blueviolet" class="py-2 px-4 rounded" wire:click="$set('open', false)">Cancelar</button>
-                    <button class="py-2 px-4 rounded" wire:click="save">Actualizar</button>
+                    <button style="background-color: red; color: white;" class="py-2 px-4 rounded" wire:click="$set('open', false)">Cancelar</button>
+                    <button style="background-color: green; color: white;" class="py-2 px-4 rounded" wire:click="save">Actualizar</button>
                 </slot>
+
             </div>
         </div>
     </x-modal>

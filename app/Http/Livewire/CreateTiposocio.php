@@ -7,7 +7,6 @@ use App\Models\Tiposocio;
 
 class CreateTiposocio extends Component
 {
-
     public $open = false;
     public $nombresocio, $descripcionsocio;
 
@@ -21,7 +20,6 @@ class CreateTiposocio extends Component
         'descripcionsocio.required' => 'La descripción del socio es obligatoria.',
     ];
 
-
     public function save()
     {
         $this->validate();
@@ -33,10 +31,10 @@ class CreateTiposocio extends Component
 
         $this->reset(['open', 'nombresocio', 'descripcionsocio']);
 
-        $this->emit('render');
+        // Emitir evento para que otros componentes lo escuchen
+        $this->emit('tipoSocioCreado');
         $this->emit('alert', 'El tipo de socio se creó correctamente');
     }
-
 
     public function render()
     {

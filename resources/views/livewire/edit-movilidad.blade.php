@@ -1,117 +1,115 @@
 <div>
-    <a wire:click="$set('open', true)">
-        <i style="background-color: green; padding: 0.5rem; border-radius: 3px;" class="fas fa-edit text-white"></i>
+    <a wire:click="$set('open', true)" style="background-color: green; padding: 10px; border-radius: 3px; color: white; text-decoration: none; cursor: pointer;">
+        <i class="fas fa-edit"></i>
     </a>
 
     <x-modal wire:model="open">
-        <div class="rounded shadow-lg">
-            <!-- Ranura (slot) para el título -->
-            <div class="bg-gray-200 py-4 px-6 rounded-t flex items-center justify-center">
+        <div style="border-radius: 0.5rem; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+            <!-- Título -->
+            <div style="background-color: #e2e8f0; padding: 1rem 1.5rem; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem; display: flex; justify-content: center; align-items: center;">
                 <slot name="title">Editar movilidad</slot>
-                {{$movilidad->placa}} <!-- Mostrar la placa de la movilidad -->
+                {{$movilidad->placa}}
             </div>
 
-            <!-- Ranura (slot) para el contenido -->
-            <div class="p-6">
+            <!-- Contenido -->
+            <div style="padding: 1.5rem;">
                 <slot name="content">
-                    <div>
-                        <div>
-                            <label style="margin-right: 0.5rem;">Placa:</label>
+                    <div style="margin-bottom: 1rem;">
+                        <div style="margin-bottom: 0.5rem; text-align: left;">
+                            <label>Placa:</label>
                         </div>
-                        <div class="w-full">
-                            <input type="text" class="w-full rounded" wire:model.defer="movilidad.placa">
+                        <div style="width: 100%;">
+                            <input type="text" wire:model.defer="movilidad.placa" style="width: 100%; border-radius: 0.375rem; padding: 0.5rem;">
                             @error('movilidad.placa')
-                               <span style="color: red">{{ $message }}</span>
+                               <span style="color: red; font-size: 0.875rem; display: block; margin-top: 0.25rem;">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
 
-                    <div>
-                        <div>
-                            <label style="margin-right: 0.5rem;">color:</label>
+                    <div style="margin-bottom: 1rem;">
+                        <div style="margin-bottom: 0.5rem; text-align: left;">
+                            <label>Color:</label>
                         </div>
-                        <div class="w-full">
-                            <input type="text" class="w-full rounded" wire:model.defer="movilidad.color">
+                        <div style="width: 100%;">
+                            <input type="text" wire:model.defer="movilidad.color" style="width: 100%; border-radius: 0.375rem; padding: 0.5rem;">
                             @error('movilidad.color')
-                               <span style="color: red">{{ $message }}</span>
+                               <span style="color: red; font-size: 0.875rem; display: block; margin-top: 0.25rem;">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
 
-
-                    <div>
-                        <div>
-                            <label style="margin-right: 0.5rem;">Marca:</label>
+                    <div style="margin-bottom: 1rem;">
+                        <div style="margin-bottom: 0.5rem; text-align: left;">
+                            <label>Marca:</label>
                         </div>
-                        <div class="w-full" >
-                            <input type="text" class="w-full rounded" wire:model.defer="movilidad.marca">
+                        <div style="width: 100%;">
+                            <input type="text" wire:model.defer="movilidad.marca" style="width: 100%; border-radius: 0.375rem; padding: 0.5rem;">
                             @error('movilidad.marca')
-                               <span style="color: red">{{ $message }}</span>
+                               <span style="color: red; font-size: 0.875rem; display: block; margin-top: 0.25rem;">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
 
-                    <div>
-                        <div>
-                            <label style="margin-right: 0.5rem;">Modelo:</label>
+                    <div style="margin-bottom: 1rem;">
+                        <div style="margin-bottom: 0.5rem; text-align: left;">
+                            <label>Modelo:</label>
                         </div>
-                        <div class="w-full" >
-                            <input type="text" class="w-full rounded" wire:model.defer="movilidad.modelo">
+                        <div style="width: 100%;">
+                            <input type="text" wire:model.defer="movilidad.modelo" style="width: 100%; border-radius: 0.375rem; padding: 0.5rem;">
                             @error('movilidad.modelo')
-                               <span style="color: red">{{ $message }}</span>
+                               <span style="color: red; font-size: 0.875rem; display: block; margin-top: 0.25rem;">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
 
-                    <div>
-                        <div>
-                            <label style="margin-right: 0.5rem;">Capacidad:</label>
+                    <div style="margin-bottom: 1rem;">
+                        <div style="margin-bottom: 0.5rem; text-align: left;">
+                            <label>Capacidad:</label>
                         </div>
-                        <div class="w-full" >
-                            <input type="text" class="w-full rounded" wire:model.defer="movilidad.capacidad">
+                        <div style="width: 100%;">
+                            <input type="text" wire:model.defer="movilidad.capacidad" style="width: 100%; border-radius: 0.375rem; padding: 0.5rem;">
                             @error('movilidad.capacidad')
-                               <span style="color: red">{{ $message }}</span>
+                               <span style="color: red; font-size: 0.875rem; display: block; margin-top: 0.25rem;">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
 
-                    <div>
-                        <div>
-                            <label style="margin-right: 0.5rem;">No. SOAT:</label>
+                    <div style="margin-bottom: 1rem;">
+                        <div style="margin-bottom: 0.5rem; text-align: left;">
+                            <label>No. SOAT:</label>
                         </div>
-                        <div class="w-full" >
-                            <input type="text" class="w-full rounded" wire:model.defer="movilidad.no_soat">
+                        <div style="width: 100%;">
+                            <input type="text" wire:model.defer="movilidad.no_soat" style="width: 100%; border-radius: 0.375rem; padding: 0.5rem;">
                             @error('movilidad.no_soat')
-                               <span style="color: red">{{ $message }}</span>
+                               <span style="color: red; font-size: 0.875rem; display: block; margin-top: 0.25rem;">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
 
-                    <div>
-                        <div>
-                            <label style="margin-right: 0.5rem;">Línea:</label>
+                    <div style="margin-bottom: 1rem;">
+                        <div style="margin-bottom: 0.5rem; text-align: left;">
+                            <label>Línea:</label>
                         </div>
-                        <div class="w-full">
-                            <select wire:model.defer="movilidad.linea_id" class="w-full rounded">
+                        <div style="width: 100%;">
+                            <select wire:model.defer="movilidad.linea_id" style="width: 100%; border-radius: 0.375rem; padding: 0.5rem;">
                                 <option value="">Selecciona una línea</option>
                                 @foreach ($lineas as $linea)
-                                    <option value="{{ $linea->id }}">{{ $linea->codigo }} - {{ $linea->id }}</option>
+                                    <option value="{{ $linea->id }}">{{ $linea->codigo }}</option>
                                 @endforeach
                             </select>
-
                             @error('movilidad.linea_id')
-                               <span style="color: red">{{ $message }}</span>
+                               <span style="color: red; font-size: 0.875rem; display: block; margin-top: 0.25rem;">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
                 </slot>
             </div>
 
-            <!-- Ranura (slot) para el footer -->
-            <div class="bg-gray-200 py-4 px-6 rounded-b text-right">
+            <!-- Footer -->
+            <div style="background-color: #e2e8f0; padding: 1rem 1.5rem; border-bottom-left-radius: 0.5rem; border-bottom-right-radius: 0.5rem; text-align: right;">
                 <slot name="footer">
-                    <button style="background-color: blueviolet" class="py-2 px-4 rounded" wire:click="$set('open', false)">Cancelar</button>
-                    <button class="py-2 px-4 rounded" wire:click="save">Actualizar</button>
+                    <button style="background-color: red; color: white;" class="py-2 px-4 rounded" wire:click="$set('open', false)">Cancelar</button>
+                    <button style="background-color: green; color: white;" class="py-2 px-4 rounded" wire:click="save">Actualizar</button>
                 </slot>
             </div>
         </div>

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('descripcion');
             $table->foreignId('grupo_id')->constrained('grupos')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

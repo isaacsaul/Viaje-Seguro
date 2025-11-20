@@ -1,10 +1,12 @@
 <div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="px-6 py-4 flex items-center">
-            <button class="font-bold py-2 px-4 rounded" style="background-color: rgb(21, 201, 214)" wire:click="$set('open', true)">
-                Crear nueva infracción
-            </button>
-        </div>
+        <button class="py-2 px-4 rounded"
+                style="background-color: rgb(21, 201, 214); color: white; font-weight: 400; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; box-shadow: 2px 2px 5px rgba(0,0,0,0.2); transition: background-color 0.3s ease;"
+                wire:click="$set('open', true)"
+                onmouseover="this.style.backgroundColor='rgb(15, 158, 168)'"
+                onmouseout="this.style.backgroundColor='rgb(21, 201, 214)'">
+                Crear nueva infraccion
+        </button>
 
         <x-modal wire:model="open">
             <div class="rounded shadow-lg">
@@ -21,12 +23,29 @@
                                 <label style="margin-right: 0.5rem;">Tipo de infracción:</label>
                             </div>
                             <div class="w-full">
-                                <input type="text" class="w-full rounded" wire:model.defer="tipoinfraccion">
+                                <select class="w-full rounded" wire:model.defer="tipoinfraccion">
+                                    <option value="">Selecciona un tipo de infracción</option>
+                                    <option value="Conducción temeraria o imprudente">Conducción temeraria o imprudente</option>
+                                    <option value="Incumplimiento de normativas de tráfico">Incumplimiento de normativas de tráfico</option>
+                                    <option value="Negativa a recoger pasajeros">Negativa a recoger pasajeros</option>
+                                    <option value="Cobro excesivo de tarifas">Cobro excesivo de tarifas</option>
+                                    <option value="Conducción bajo la influencia de sustancias">Conducción bajo la influencia de sustancias</option>
+                                    <option value="Maltrato o acoso a pasajeros">Maltrato o acoso a pasajeros</option>
+                                    <option value="Negligencia en el mantenimiento del vehículo">Negligencia en el mantenimiento del vehículo</option>
+                                    <option value="Falta de documentación">Falta de documentación</option>
+                                    <option value="Estacionamiento indebido u obstrucción">Estacionamiento indebido u obstrucción</option>
+                                    <option value="Incumplimiento de horarios o rutas">Incumplimiento de horarios o rutas</option>
+                                    <option value="Uso indebido del celular mientras se conduce">Uso indebido del celular mientras se conduce</option>
+                                    <option value="Falta de cortesía o atención al cliente">Falta de cortesía o atención al cliente</option>
+                                    <option value="Falta de higiene o limpieza en el vehículo">Falta de higiene o limpieza en el vehículo</option>
+                                    <option value="Infracciones de tráfico en general">Infracciones de tráfico en general</option>
+                                </select>
                                 @error('tipoinfraccion')
                                     <span style="color: red">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
+
 
                         <div>
                             <div>
@@ -98,10 +117,13 @@
                 <!-- Ranura (slot) para el footer -->
                 <div class="bg-gray-200 py-4 px-6 rounded-b text-right">
                     <slot name="footer">
-                        <button style="background-color: blueviolet" class="py-2 px-4 rounded" wire:click="$set('open', false)">Cancelar</button>
-                        <button class="py-2 px-4 rounded"  style="background-color: rgb(67, 216, 204)" wire:click="save">Crear</button>
+                        <!-- Botón de cancelar con fondo rojo y texto blanco -->
+                        <button class="py-2 px-4 rounded text-white" style="background-color: red;" wire:click="$set('open', false)">Cancelar</button>
+                        <!-- Botón de crear con fondo verde y texto blanco -->
+                        <button class="py-2 px-4 rounded text-white" style="background-color: green;" wire:click="save">Crear</button>
                     </slot>
                 </div>
+
             </div>
         </x-modal>
     </div>

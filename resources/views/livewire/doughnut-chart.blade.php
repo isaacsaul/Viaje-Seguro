@@ -1,4 +1,4 @@
-<div style="width: 100%; height: 400px; margin: auto;">
+<div style="width: 600px; height: 500px; margin: auto;">
     <canvas id="doughnutChart"></canvas>
 </div>
 

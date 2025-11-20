@@ -52,7 +52,7 @@
         <script>
             Livewire.on('alert', function(mensaje){
                 Swal.fire({
-                title: "Good job!",
+                title: "Trabajo realizado!",
                 text: mensaje,
                 icon: "success"
                 });
@@ -82,30 +82,27 @@
 
 
 
-            Livewire.on('deleteNoticia',noticiaId=> {
+            Livewire.on('deleteNoticia', noticiaId => {
                 Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
+                    title: "¿Estás seguro?",
+                    text: "¡No podrás revertir esto!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Sí, eliminarlo"
                 }).then((result) => {
-                if (result.isConfirmed) {
-
-                    Livewire.emitTo('show-noticias', 'delete',noticiaId);
-
-
-                    Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                    });
-                }
+                    if (result.isConfirmed) {
+                        Livewire.emitTo('show-noticias', 'delete', noticiaId);
+                        Swal.fire({
+                            title: "¡Eliminado!",
+                            text: "La noticia ha sido eliminado.",
+                            icon: "success"
+                        });
+                    }
                 });
-
             });
+
 
 
             Livewire.on('deleteLinea', lineaId => {
@@ -122,7 +119,7 @@
                         Livewire.emitTo('show-lineas', 'delete', lineaId);
                         Swal.fire({
                             title: "¡Eliminado!",
-                            text: "Tu archivo ha sido eliminado.",
+                            text: "La linea ha sido eliminado.",
                             icon: "success"
                         });
                     }
@@ -144,7 +141,7 @@
                         Livewire.emitTo('show-grupos', 'delete', grupoId); // Asegúrate de reemplazar 'show-grupos' con el nombre correcto del componente
                         Swal.fire({
                             title: "¡Eliminado!",
-                            text: "Tu grupo ha sido eliminado.",
+                            text: "El grupo ha sido eliminado.",
                             icon: "success"
                         });
                     }
@@ -263,6 +260,33 @@
                     }
                 });
             });
+
+
+            Livewire.on('deletePago', pagoId => {
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: "¡No podrás revertir esto!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, eliminarlo"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.emitTo('show-pagos', 'delete', pagoId); // Emite el evento de eliminación al componente Livewire correspondiente
+                    Swal.fire({
+                        title: "¡Eliminado!",
+                        text: "El pago ha sido eliminado.",
+                        icon: "success"
+                    });
+                }
+            });
+        });
+
+
+
+
+
 
 
 
